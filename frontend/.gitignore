@@ -35,10 +35,6 @@ admin/build/
 # Logs
 **/*.log
 
-# Environment files
-backend/.env
-frontend/.env
-admin/.env
 
 # OS and IDE files
 .DS_Store
