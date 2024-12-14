@@ -1,0 +1,21 @@
+.cart-total-container {
+    width: 100%;
+    background-color: #F1F5F9 !important;
+}
+
+.title {
+    font-size: 1.5rem;
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+}
+
+.item {
+    display: flex;
+    justify-content: space-between;
+}

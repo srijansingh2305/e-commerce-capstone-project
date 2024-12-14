@@ -1,0 +1,119 @@
+/* Place Order Form */
+.place-order-form {
+    display: flex;
+    justify-content: space-between; /* Space between left and right sections */
+    gap: 2rem;
+    padding-top: 1rem;
+    min-height: 80vh;
+    border-top: 1px solid #e0e0e0;
+}
+
+/* Left Section (Delivery Information Form) */
+.form-left {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    flex: 1; /* Takes up the remaining space */
+    max-width: 600px;
+}
+
+/* Right Section (Cart Totals + Payment) */
+.form-right {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 400px;
+    width: 100%;
+}
+
+/* Input Groups */
+.input-group {
+    display: flex;
+    gap: 1rem;
+}
+
+.input {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 0.75rem;
+    width: 100%;
+}
+
+/* Cart Total Container */
+.cart-total-container {
+    border: 1px solid #ddd;
+    padding: 1.5rem;
+    border-radius: 6px;
+    background-color: #fafafa;
+}
+
+/* Payment Section */
+.payment-section {
+    margin-top: 1.5rem;
+}
+
+.payment-options {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.payment-option {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border: 1px solid #ddd;
+    padding: 0.75rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.payment-option:hover {
+    background-color: #f7f7f7;
+}
+
+.payment-option.selected {
+    border-color: #4CAF50;
+    background-color: #e9ffe9;
+}
+
+.payment-option .circle {
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid #aaa;
+    border-radius: 50%;
+}
+
+.payment-option.selected .circle {
+    background-color: #4CAF50;
+    border-color: #4CAF50;
+}
+
+/* Submit Button */
+.submit-button {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+.submit-button button {
+    background-color: #000;
+    color: #fff;
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button button:hover {
+    background-color: #333;
+}
+
+/* Title Styling */
+.title-container {
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    font-weight: bold;
+}

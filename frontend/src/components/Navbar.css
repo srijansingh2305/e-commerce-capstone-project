@@ -1,0 +1,158 @@
+.navbar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 0;
+    font-weight: 500;
+}
+
+.logo {
+    width: 9rem;
+    height: 5rem;
+}
+
+.nav-links {
+    display: none;
+    gap: 1.25rem;
+    font-size: 0.875rem;
+    color: #4A5568; /* Tailwind color gray-700 */
+}
+
+@media (min-width: 640px) {
+    .nav-links {
+        display: flex;
+    }
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.underline {
+    width: 50%;
+    height: 1.5px;
+    background-color: #4A5568;
+    border: none;
+    display: none;
+}
+
+.nav-item:hover .underline {
+    display: block;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.icon {
+    width: 1.25rem;
+    cursor: pointer;
+}
+
+.profile-menu {
+    position: relative;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    padding-top: 1rem;
+}
+
+.profile-menu:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 9rem;
+    padding: 0.75rem 1.25rem;
+    background-color: #F8FAFC; /* Tailwind color slate-100 */
+    color: #6B7280; /* Tailwind color gray-500 */
+    border-radius: 0.25rem;
+}
+
+.menu-item {
+    cursor: pointer;
+}
+
+.menu-item:hover {
+    color: #000000;
+}
+
+.cart {
+    position: relative;
+}
+
+.cart-count {
+    position: absolute;
+    right: -0.3125rem;
+    bottom: -0.3125rem;
+    width: 1rem;
+    text-align: center;
+    line-height: 1rem;
+    background-color: #000000;
+    color: #FFFFFF;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    font-size: 0.5rem;
+}
+
+.menu-icon {
+    width: 1.25rem;
+    cursor: pointer;
+    display: block;
+}
+
+@media (min-width: 640px) {
+    .menu-icon {
+        display: none;
+    }
+}
+
+.sidebar {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 0;
+    overflow: hidden;
+    background-color: #FFFFFF;
+    transition: width 0.3s ease-in-out;
+}
+
+.sidebar.visible {
+    width: 100%;
+}
+
+.sidebar-content {
+    display: flex;
+    flex-direction: column;
+    color: #4A5568; /* Tailwind color gray-600 */
+}
+
+.back-button {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem;
+    cursor: pointer;
+}
+
+.back-icon {
+    height: 1rem;
+    transform: rotate(180deg);
+}
+
+.sidebar-link {
+    padding: 0.5rem 1.5rem;
+    border-bottom: 1px solid #E5E7EB; /* Tailwind color gray-200 */
+}

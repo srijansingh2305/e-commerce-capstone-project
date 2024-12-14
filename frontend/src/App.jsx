@@ -13,9 +13,12 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import SearchBar from './components/SearchBar'
 import ElectronicsList from './pages/ElectronicsList';
+import ElectronicsProduct from './pages/ElectronicsProduct';
+import PrivacyPolicy from './pages/PrivacyPolicy';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Verify from './pages/Verify'
+
 
 
 const App = () => {
@@ -30,12 +33,14 @@ const App = () => {
         <Route path='/about' element={<About />} />
         <Route path='/contact' element={<Contact />} />
         <Route path='/product/:productId' element={<Product />} />
+        <Route path="/electronicsproduct/:productId" element={<ElectronicsProduct/>} />
         <Route path='/cart' element={<Cart />} />
         <Route path='/login' element={<Login />} />
         <Route path='/place-order' element={<PlaceOrder />} />
         <Route path='/orders' element={<Orders />} />
         <Route path='/verify' element={<Verify />} />
         <Route path='/electronicslist' element={<ElectronicsList />} />
+        <Route path='/privacy-policy' element={<PrivacyPolicy />} />
       </Routes>
       <Footer />
     </div>

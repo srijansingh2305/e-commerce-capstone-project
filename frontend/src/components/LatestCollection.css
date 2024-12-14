@@ -1,0 +1,53 @@
+.latest-collection-container {
+    margin: 2.5rem 0;
+}
+
+.header {
+    text-align: center;
+    padding: 2rem 0;
+    font-size: 1.875rem;
+}
+
+.description {
+    width: 75%;
+    margin: auto;
+    font-size: 0.75rem;
+    color: #4A5568; /* Tailwind color gray-600 */
+}
+
+@media (min-width: 640px) {
+    .description {
+        font-size: 0.875rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .description {
+        font-size: 1rem;
+    }
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    gap-row: 1.5rem;
+}
+
+@media (min-width: 640px) {
+    .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 768px) {
+    .product-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .product-grid {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}

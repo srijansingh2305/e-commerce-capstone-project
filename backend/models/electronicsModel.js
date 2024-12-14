@@ -7,6 +7,8 @@ const electronicsSchema = new mongoose.Schema({
     price: { type: Number, required: true },
     image: { type: Array, required: true },
     category: { type: String, required: true },
+    ramSize: { type: Array, required: true },
+    storageSize: { type: Array, required: true },
     subCategory: { type: String, required: true },
     date: { type: Number, required: true }
 });

@@ -1,0 +1,28 @@
+.title-container {
+    display: inline-flex;
+    gap: 0.5rem;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.title-text {
+    color: #6B7280; /* Tailwind color gray-500 */
+}
+
+.title-highlight {
+    color: #4A5568; /* Tailwind color gray-700 */
+    font-weight: 500;
+}
+
+.title-line {
+    width: 2rem;
+    height: 1px;
+    background-color: #4A5568;
+}
+
+@media (min-width: 640px) {
+    .title-line {
+        width: 3rem;
+        height: 2px;
+    }
+}

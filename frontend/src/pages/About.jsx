@@ -1,49 +1,44 @@
-import React from 'react'
-import Title from '../components/Title'
-import { assets } from '../assets/assets'
-import NewsletterBox from '../components/NewsletterBox'
+import React from 'react';
+import Title from '../components/Title';
+import { assets } from '../assets/assets';
+import NewsletterBox from '../components/NewsletterBox';
+import './About.css';
 
 const About = () => {
-  return (
-    <div>
-
-      <div className='text-2xl text-center pt-8 border-t'>
-          <Title text1={'ABOUT'} text2={'US'} />
-      </div>
-
-      <div className='my-10 flex flex-col md:flex-row gap-16'>
-          <img className='w-full md:max-w-[450px]' src={assets.about_img} alt="" />
-          <div className='flex flex-col justify-center gap-6 md:w-2/4 text-gray-600'>
-              <p>Forever was born out of a passion for innovation and a desire to revolutionize the way people shop online. Our journey began with a simple idea: to provide a platform where customers can easily discover, explore, and purchase a wide range of products from the comfort of their homes.</p>
-              <p>Since our inception, we've worked tirelessly to curate a diverse selection of high-quality products that cater to every taste and preference. From fashion and beauty to electronics and home essentials, we offer an extensive collection sourced from trusted brands and suppliers.</p>
-              <b className='text-gray-800'>Our Mission</b>
-              <p>Our mission at Forever is to empower customers with choice, convenience, and confidence. We're dedicated to providing a seamless shopping experience that exceeds expectations, from browsing and ordering to delivery and beyond.</p>
-          </div>
-      </div>
-
-      <div className=' text-xl py-4'>
-          <Title text1={'WHY'} text2={'CHOOSE US'} />
-      </div>
-
-      <div className='flex flex-col md:flex-row text-sm mb-20'>
-          <div className='border px-10 md:px-16 py-8 sm:py-20 flex flex-col gap-5'>
-            <b>Quality Assurance:</b>
-            <p className=' text-gray-600'>We meticulously select and vet each product to ensure it meets our stringent quality standards.</p>
-          </div>
-          <div className='border px-10 md:px-16 py-8 sm:py-20 flex flex-col gap-5'>
-            <b>Convenience:</b>
-            <p className=' text-gray-600'>With our user-friendly interface and hassle-free ordering process, shopping has never been easier.</p>
-          </div>
-          <div className='border px-10 md:px-16 py-8 sm:py-20 flex flex-col gap-5'>
-            <b>Exceptional Customer Service:</b>
-            <p className=' text-gray-600'>Our team of dedicated professionals is here to assist you the way, ensuring your satisfaction is our top priority.</p>
-          </div>
-      </div>
-
-      <NewsletterBox/>
-      
-    </div>
-  )
+    return (
+        <div>
+            <div className='about-header'>
+                <Title text1={'ABOUT'} text2={'US'} />
+            </div>
+            <div className='about-content'>
+                <img className='about-image' src={assets.about_img} alt="" />
+                <div className='about-text'>
+                    <p>At Wire Wear, we believe that fashion and technology are the perfect pairing to elevate your lifestyle. Born out of a passion for stylish innovation, our ecommerce platform offers a unique blend of cutting-edge electronics and trendsetting fashion. From the latest gadgets to the chicest apparel, we aim to bring you the best of both worlds, making your shopping experience as seamless and enjoyable as possible. Whether you're looking to upgrade your wardrobe or your tech arsenal, Wire Wear is your go-to destination for quality products that stand out in style and performance.</p>
+                    <p>Our commitment to excellence is reflected in our curated selection of items, each chosen for their superior design and functionality. We strive to cater to the modern consumer who values both aesthetics and efficiency. At Wire Wear, we are dedicated to providing exceptional customer service and a shopping environment that is intuitive, engaging, and inspiring. Join us on this journey as we merge the realms of fashion and technology, helping you to live a life that's always on trend and ahead of the curve.</p>
+                    <b className='mission-title'>Our Mission</b>
+                    <p>Our mission at Wire Wear is to seamlessly blend fashion and technology, providing our customers with innovative, stylish, and high-quality products. We are dedicated to creating a unique shopping experience that inspires and empowers individuals to express their personal style through both their clothing and their tech choices. Our goal is to be the leading destination for those who seek to combine cutting-edge electronics with trendsetting fashion, all while delivering outstanding customer service and value.</p>
+                </div>
+            </div>
+            <div className='choose-us'>
+                <Title text1={'WHY'} text2={'CHOOSE US'} />
+            </div>
+            <div className='benefits'>
+                <div className='benefit-item'>
+                    <b>Quality Assurance:</b>
+                    <p>We meticulously select and vet each product to ensure it meets our stringent quality standards.</p>
+                </div>
+                <div className='benefit-item'>
+                    <b>Convenience:</b>
+                    <p>With our user-friendly interface and hassle-free ordering process, shopping has never been easier.</p>
+                </div>
+                <div className='benefit-item'>
+                    <b>Exceptional Customer Service:</b>
+                    <p>Our team of dedicated professionals is here to assist you every step of the way, ensuring your satisfaction is our top priority.</p>
+                </div>
+            </div>
+            <NewsletterBox />
+        </div>
+    );
 }
 
-export default About
+export default About;

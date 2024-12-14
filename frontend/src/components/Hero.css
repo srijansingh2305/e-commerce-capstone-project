@@ -1,0 +1,112 @@
+.hero-container {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #D1D5DB; /* Tailwind color gray-400 */
+}
+
+@media (min-width: 640px) {
+    .hero-container {
+        flex-direction: row;
+    }
+}
+
+.hero-left {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2.5rem 0;
+}
+
+@media (min-width: 640px) {
+    .hero-left {
+        width: 50%;
+        padding: 0;
+    }
+}
+
+.hero-text {
+    color: #414141;
+}
+
+.hero-bestsellers {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.bestsellers-line {
+    width: 2rem;
+    height: 2px;
+    background-color: #414141;
+}
+
+@media (min-width: 768px) {
+    .bestsellers-line {
+        width: 2.75rem;
+    }
+}
+
+.bestsellers-text {
+    font-weight: 500;
+    font-size: 0.875rem;
+}
+
+@media (min-width: 768px) {
+    .bestsellers-text {
+        font-size: 1rem;
+    }
+}
+
+.hero-title {
+    font-family: 'Prata', serif; /* Assuming 'Prata' is the font-family */
+    font-size: 1.0rem;
+    padding-top: 0.75rem;
+    padding-bottom: 0;
+    line-height: 1.5;
+}
+
+@media (min-width: 1024px) {
+    .hero-title {
+        font-size: 1.875rem;
+    }
+}
+
+.hero-shop-now {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.shop-now-text {
+    font-weight: 600;
+    font-size: 0.875rem;
+}
+
+@media (min-width: 768px) {
+    .shop-now-text {
+        font-size: 1rem;
+    }
+}
+
+.shop-now-line {
+    width: 2rem;
+    height: 1px;
+    background-color: #414141;
+}
+
+@media (min-width: 768px) {
+    .shop-now-line {
+        width: 2.75rem;
+    }
+}
+
+.hero-image {
+    width: 100%;
+}
+
+@media (min-width: 640px) {
+    .hero-image {
+        width: 50%;
+    }
+}

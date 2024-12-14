@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import {assets} from '../assets/assets'
 import { toast } from 'react-toastify';
 import { backendUrl } from '../App';
 
@@ -15,23 +16,29 @@ const AddElectronics = ({ token }) => {
     const [category, setCategory] = useState("Electronics");
     const [subCategory, setSubCategory] = useState("");
     const [bestseller, setBestseller] = useState(false);
-    const [sizes, setSizes] = useState([]);
+    const [ramSize, setRamSize] = useState([]);
+    const [storageSize, setStorageSize] = useState([]);
 
     const onSubmitHandler = async (e) => {
         e.preventDefault();
-        const formData = new FormData();
-        // Append all necessary fields
-        formData.append("name", name);
-        formData.append("description", description);
-        formData.append("price", price);
-        formData.append("category", category);
-        formData.append("subCategory", subCategory);    
-        if (image1) formData.append("image1", image1);
-        if (image2) formData.append("image2", image2);
-        if (image3) formData.append("image3", image3);
-        if (image4) formData.append("image4", image4);
+        
 
         try {
+
+            const formData = new FormData();
+            // Append all necessary fields
+            formData.append("name", name);
+            formData.append("description", description);
+            formData.append("price", price);
+            formData.append("category", category);
+            formData.append("subCategory", subCategory);   
+            formData.append("ramSize",JSON.stringify(ramSize)); // Add RAM size
+            formData.append("storageSize",JSON.stringify(storageSize)); // Add Storage size 
+            image1 && formData.append("image1",image1)
+            image2 && formData.append("image2",image2)
+            image3 && formData.append("image3",image3)
+            image4 && formData.append("image4",image4)
+
             const response = await axios.post(backendUrl + "/api/electronics/add", formData, {
                 headers: { token }
             });
@@ -44,7 +51,8 @@ const AddElectronics = ({ token }) => {
                 setCategory("Electronics");
                 setSubCategory("");
                 setBestseller(false);
-                setSizes([]);
+                setRamSize([]);
+                setStorageSize([]);
                 setImage1(null);
                 setImage2(null);
                 setImage3(null);
@@ -53,14 +61,14 @@ const AddElectronics = ({ token }) => {
                 toast.error(response.data.message);
             }
         } catch (error) {
-            console.error(error);
+            console.log(error);
             toast.error("Error adding electronics");
         }
     };
 
     return (
         <form onSubmit={onSubmitHandler} className='flex flex-col w-full items-start gap-3'>
-            <div>
+            {/* <div>
                 <p className='mb-2'>Upload Images</p>
                 <div className='flex gap-2'>
                     <label htmlFor="image1">
@@ -80,7 +88,30 @@ const AddElectronics = ({ token }) => {
                         <input onChange ={(e) => setImage4(e.target.files[0])} type="file" id="image4" hidden />
                     </label>
                 </div>
-            </div>
+            </div> */}
+
+            <div>
+                      <p className='mb-2'>Upload Image</p>
+            
+                      <div className='flex gap-2'>
+                        <label htmlFor="image1">
+                          <img className='w-20' src={!image1 ? assets.upload_area : URL.createObjectURL(image1)} alt="" />
+                          <input onChange={(e)=>setImage1(e.target.files[0])} type="file" id="image1" hidden/>
+                        </label>
+                        <label htmlFor="image2">
+                          <img className='w-20' src={!image2 ? assets.upload_area : URL.createObjectURL(image2)} alt="" />
+                          <input onChange={(e)=>setImage2(e.target.files[0])} type="file" id="image2" hidden/>
+                        </label>
+                        <label htmlFor="image3">
+                          <img className='w-20' src={!image3 ? assets.upload_area : URL.createObjectURL(image3)} alt="" />
+                          <input onChange={(e)=>setImage3(e.target.files[0])} type="file" id="image3" hidden/>
+                        </label>
+                        <label htmlFor="image4">
+                          <img className='w-20' src={!image4 ? assets.upload_area : URL.createObjectURL(image4)} alt="" />
+                          <input onChange={(e)=>setImage4(e.target.files[0])} type="file" id="image4" hidden/>
+                        </label>
+                      </div>
+                    </div>
 
             <div className='w-full'>
                 <p className='mb-2'>Product Name</p>
@@ -109,16 +140,42 @@ const AddElectronics = ({ token }) => {
 
                 <div>
                     <p className='mb-2'>Product Price</p>
-                    <input onChange={(e) => setPrice(e.target.value)} value={price} className='w-full px-3 py-2 sm:w-[120px]' type="number" placeholder='25' required />
+                    <input onChange={(e) => setPrice(e.target.value)} value={price} className='w-full px-3 py-2 sm:w-[120px]' type="number" placeholder='25000' required />
                 </div>
             </div>
+            <div>
+                <p className='mb-2'>RAM Size</p>
+                <div className='flex gap-3'>
+                    {["8GB", "10GB", "12GB", "16GB", "32GB"].map(size => (
+                        <div key={size} onClick={() => setRamSize(prev => prev.includes(size) ? prev.filter(item => item !== size) : [...prev, size])}>
+                            <p className={`${ramSize.includes(size) ? "bg-gray-400" : " bg-gray-200"} cursor-pointer p-2 rounded`}>{size}</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            {/* Storage Size Selection */}
+            <div>
+                <p className='mb-2'>Storage Size</p>
+                <div className='flex gap-3'>
+                    {["128GB", "256GB", "512GB", "1TB", "2TB"].map(size => (
+                        <div key={size} onClick={() => setStorageSize(prev => prev.includes(size) ? prev.filter(item => item !== size) : [...prev, size])}>
+                            <p className={`${storageSize.includes(size) ? "bg-gray-400" : "bg-gray-200"} cursor-pointer p-2 rounded`}>{size}</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+                
+
+
 
             <div className='flex gap-2 mt-2'>
                 <input onChange={() => setBestseller(prev => !prev)} checked={bestseller} type="checkbox" id='bestseller' />
                 <label className='cursor-pointer' htmlFor="bestseller">Add to Bestseller</label>
             </div>
 
-            <button type="submit" className='w-28 py-3 mt-4 bg-black text-white'>ADD</button>
+            <button type="submit" className='w-28 py-3 mt-4 bg-gray-700 text-white'>ADD</button>
         </form>
     );
 };

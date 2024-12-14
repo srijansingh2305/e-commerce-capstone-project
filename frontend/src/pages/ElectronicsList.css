@@ -1,0 +1,82 @@
+.electronics-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid #e0e0e0;
+  }
+  
+  @media (min-width: 640px) {
+    .electronics-container {
+      flex-direction: row;
+      gap: 2.5rem;
+    }
+  }
+  
+  .electronics-filter {
+    min-width: 15rem;
+  }
+  
+  .filter-title {
+    margin-bottom: 0.75rem;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  
+  .filter-category,
+  .filter-subcategory {
+    border: 1px solid #e0e0e0;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .filter-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 300;
+    color: #4a4a4a;
+  }
+  
+  label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .electronics-list {
+    flex: 1;
+  }
+  
+  .electronics-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .sort-select {
+    border: 2px solid #e0e0e0;
+    font-size: 0.875rem;
+    padding: 0.25rem 0.5rem;
+  }
+  
+  .electronics-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  
+  @media (min-width: 768px) {
+    .electronics-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .electronics-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  

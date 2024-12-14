@@ -30,7 +30,7 @@ const ElectronicsList = ({ token }) => {
                 toast.error(response.data.message);
             }
         } catch (error) {
-            console.error(error);
+            console.log(error);
             toast.error(error.message);
         }
     };

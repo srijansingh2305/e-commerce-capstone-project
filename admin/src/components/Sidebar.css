@@ -1,0 +1,63 @@
+/* Sidebar link active state */
+.sidebar-link-active {
+    background-color: #e2e8f0; /* Light gray background */
+    border-left: 4px solid #000; /* Black left border for active link */
+    font-weight: 600; /* Make the active link text bolder */
+  }
+  
+  /* Optional: Add hover effect for all links */
+  .sidebar-link:hover {
+    background-color: #f3f4f6; /* Light gray background on hover */
+  }
+  
+  /* Sidebar container styling remains the same */
+  .sidebar-container {
+    width: 18%;
+    min-height: 100vh;
+    border-right: 2px solid #e2e8f0; /* Light gray border */
+  }
+  
+  /* Sidebar links container remains the same */
+  .sidebar-links {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-top: 24px;
+    padding-left: 20%;
+    font-size: 15px;
+  }
+  
+  /* Sidebar link styling remains the same */
+  .sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border: 1px solid #e2e8f0; /* Light border */
+    border-right: 0;
+    padding: 8px 12px;
+    border-radius: 0 8px 8px 0;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Sidebar link text styling remains the same */
+  .sidebar-link-text {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333; /* Dark text color */
+  }
+  
+  /* Responsive visibility for text */
+  @media (min-width: 768px) {
+    .sidebar-link-text {
+      display: block;
+    }
+  }
+  
+  /* For smaller screens, hide text and display only icons */
+  @media (max-width: 768px) {
+    .sidebar-link-text {
+      display: none;
+    }
+  }
+  

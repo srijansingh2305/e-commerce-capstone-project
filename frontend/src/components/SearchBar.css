@@ -1,0 +1,40 @@
+.search-bar-container {
+    border-top: 1px solid #E5E7EB; /* Tailwind color gray-300 */
+    border-bottom: 1px solid #E5E7EB;
+    background-color: #F9FAFB; /* Tailwind color gray-50 */
+    text-align: center;
+}
+
+.search-bar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #9CA3AF; /* Tailwind color gray-400 */
+    padding: 0.5rem 1.25rem;
+    margin: 1.25rem 0.75rem;
+    border-radius: 9999px; /* Fully rounded corners */
+    width: 75%;
+}
+
+@media (min-width: 640px) {
+    .search-bar {
+        width: 50%;
+    }
+}
+
+.search-input {
+    flex: 1;
+    outline: none;
+    background-color: inherit;
+    font-size: 0.875rem;
+}
+
+.search-icon {
+    width: 1rem;
+}
+
+.close-icon {
+    display: inline;
+    width: 0.75rem;
+    cursor: pointer;
+}

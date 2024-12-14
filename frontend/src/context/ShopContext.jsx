@@ -6,25 +6,58 @@ import axios from 'axios';
 export const ShopContext = createContext();
 
 const ShopContextProvider = (props) => {
-    const currency = '$';
-    const delivery_fee = 10;
+    const currency = 'Rs ';
+    const delivery_fee = 250;
     const backendUrl = import.meta.env.VITE_BACKEND_URL;
     const [search, setSearch] = useState('');
     const [showSearch, setShowSearch] = useState(false);
     const [cartItems, setCartItems] = useState({});
     const [products, setProducts] = useState([]);
-    const [electronics, setElectronics] = useState([]); // New state for electronics
+    const [electronics, setElectronics] = useState([]);
     const [token, setToken] = useState('');
     const navigate = useNavigate();
 
+    // const addToCart = async (itemId, size) => {
+    //     if (!size) {
+    //         toast.error('Select Product Size');
+    //         return;
+    //     }
+    
+    //     let cartData = structuredClone(cartItems);
+    //     console.log("Current Cart Items Before Adding:", cartData);
+    
+    //     if (cartData[itemId]) {
+    //         if (cartData[itemId][size]) {
+    //             cartData[itemId][size] += 1;
+    //         } else {
+    //             cartData[itemId][size] = 1;
+    //         }
+    //     } else {
+    //         cartData[itemId] = {};
+    //         cartData[itemId][size] = 1;
+    //     }
+    //     setCartItems(cartData);
+        
+    //     console.log("Cart Items After Adding:", cartData);
+    //     console.log("Total Count After Adding:", getCartCount()); // Log the count after adding
+    
+    //     if (token) {
+    //         try {
+    //             const response = await axios.post(backendUrl + '/api/cart/add', { itemId, size }, { headers: { token } });
+    //             console.log("Response from add to cart API:", response.data);
+    //         } catch (error) {
+    //             console.error("Error adding to cart:", error);
+    //             toast.error(error.message);
+    //         }
+    //     }
+    // };
     const addToCart = async (itemId, size) => {
         if (!size) {
             toast.error('Select Product Size');
             return;
         }
-
+    
         let cartData = structuredClone(cartItems);
-
         if (cartData[itemId]) {
             if (cartData[itemId][size]) {
                 cartData[itemId][size] += 1;
@@ -36,12 +69,42 @@ const ShopContextProvider = (props) => {
             cartData[itemId][size] = 1;
         }
         setCartItems(cartData);
-
+    
+        // Update the database
         if (token) {
             try {
                 await axios.post(backendUrl + '/api/cart/add', { itemId, size }, { headers: { token } });
             } catch (error) {
-                console.log(error);
+                console.error("Error adding to cart:", error);
+                toast.error(error.message);
+            }
+        }
+    };
+    const addElectronicsToCart = async (itemId, ramSize, storageSize) => {
+        if (!ramSize || !storageSize) {
+            toast.error('Select RAM and Storage Size');
+            return;
+        }
+    
+        let cartData = structuredClone(cartItems);
+    
+        if (cartData[itemId]) {
+            if (cartData[itemId][`${ramSize}-${storageSize}`]) {
+                cartData[itemId][`${ramSize}-${storageSize}`] += 1;
+            } else {
+                cartData[itemId][`${ramSize}-${storageSize}`] = 1;
+            }
+        } else {
+            cartData[itemId] = {};
+            cartData[itemId][`${ramSize}-${storageSize}`] = 1;
+        }
+        setCartItems(cartData);
+    
+        if (token) {
+            try {
+                await axios.post(backendUrl + '/api/cart/add', { itemId, ramSize, storageSize }, { headers: { token } });
+            } catch (error) {
+                console.error("Error adding electronics to cart:", error);
                 toast.error(error.message);
             }
         }
@@ -49,41 +112,62 @@ const ShopContextProvider = (props) => {
 
     const getCartCount = () => {
         let totalCount = 0;
-        for (const items in cartItems) {
-            for (const item in cartItems[items]) {
-                if (cartItems[items][item] > 0) {
-                    totalCount += cartItems[items][item];
-                }
+        
+        for (const itemId in cartItems) {
+            for (const size in cartItems[itemId]) {
+                console.log(`Item ID: ${itemId}, Size: ${size}, Quantity: ${cartItems[itemId][size]}`);
+                totalCount += cartItems[itemId][size];
             }
         }
+        
         return totalCount;
     };
+    
 
     const updateQuantity = async (itemId, size, quantity) => {
-        let cartData = structuredClone(cartItems);
-        cartData[itemId][size] = quantity;
-        setCartItems(cartData);
+        if (quantity < 0) {
+            toast.error('Quantity cannot be negative');
+            return;
+        }
 
-        if (token) {
-            try {
-                await axios.post(backendUrl + '/api/cart/update', { itemId, size, quantity }, { headers: { token } });
-            } catch (error) {
-                console.log(error);
-                toast.error(error.message);
+        let cartData = structuredClone(cartItems);
+        if (cartData[itemId]) {
+            cartData[itemId ][size] = quantity;
+            setCartItems(cartData);
+            
+
+            if (token) {
+                try {
+                    const response = await axios.post(backendUrl + '/api/cart/update', { itemId, size, quantity }, { headers: { token } });
+                    console.log("Response from update quantity API:", response.data);
+                } catch (error) {
+                    console.error("Error updating quantity:", error);
+                    toast.error(error.message);
+                }
             }
+        } else {
+            console.warn(`Item ID ${itemId} not found in cart for update.`);
         }
     };
 
     const getCartAmount = () => {
         let totalAmount = 0;
+        
         for (const items in cartItems) {
             let itemInfo = products.find((product) => product._id === items) || electronics.find((electronic) => electronic._id === items);
+            
+            if (!itemInfo) {
+                console.warn(`Item with ID ${items} not found in products or electronics.`);
+                continue;
+            }
+
             for (const item in cartItems[items]) {
                 if (cartItems[items][item] > 0) {
                     totalAmount += itemInfo.price * cartItems[items][item];
                 }
             }
         }
+        
         return totalAmount;
     };
 
@@ -91,13 +175,13 @@ const ShopContextProvider = (props) => {
         try {
             const response = await axios.get(`${backendUrl}/api/product/list`);
             if (response.data.success) {
-                console.log("Products Data: ", response.data.products); // Log the fetched data
                 setProducts(response.data.products.reverse());
+                console.log("Products fetched successfully:", response.data.products);
             } else {
                 toast.error(response.data.message);
             }
         } catch (error) {
-            console.log(error);
+            console.error("Error fetching products:", error);
             toast.error(error.message);
         }
     };
@@ -106,32 +190,46 @@ const ShopContextProvider = (props) => {
         try {
             const response = await axios.get(`${backendUrl}/api/electronics/list`);
             if (response.data.success) {
-                console.log("Electronics Data: ", response.data.electronics); // Log the fetched data
                 setElectronics(response.data.electronics.reverse());
+                console.log("Electronics fetched successfully:", response.data.electronics);
             } else {
                 toast.error(response.data.message);
             }
         } catch (error) {
-            console.log(error);
+            console.error("Error fetching electronics:", error);
             toast.error(error.message);
         }
     };
 
+    // const getUserCart = async (token) => {
+    //     try {
+    //         const response = await axios.post(`${backendUrl}/api/cart/get`, {}, { headers: { token } });
+    //         if (response.data.success) {
+    //             setCartItems(response.data.cartData);
+    //             console.log("User  cart fetched successfully:", response.data.cartData);
+    //         }
+    //     } catch (error) {
+    //         console.error("Error fetching user cart:", error);
+    //         toast.error(error.message);
+    //     }
+    // };
     const getUserCart = async (token) => {
         try {
             const response = await axios.post(`${backendUrl}/api/cart/get`, {}, { headers: { token } });
             if (response.data.success) {
-                setCartItems(response.data.cartData);
+                setCartItems(response.data.cartData); // Update state with fetched cart data
+            } else {
+                setCartItems({}); // If fetching fails, reset cart
             }
         } catch (error) {
-            console.log(error);
+            console.error("Error fetching user cart:", error);
             toast.error(error.message);
         }
     };
 
     useEffect(() => {
         getProductsData();
-        getElectronicsData(); // Fetch electronics data on mount
+        getElectronicsData();
     }, []);
 
     useEffect(() => {
@@ -146,7 +244,7 @@ const ShopContextProvider = (props) => {
 
     const value = {
         products,
-        electronics, // Expose electronics data
+        electronics,
         currency,
         delivery_fee,
         search,
@@ -155,6 +253,7 @@ const ShopContextProvider = (props) => {
         setShowSearch,
         cartItems,
         addToCart,
+        addElectronicsToCart,
         setCartItems,
         getCartCount,
         updateQuantity,
@@ -162,7 +261,7 @@ const ShopContextProvider = (props) => {
         navigate,
         backendUrl,
         setToken,
-        token
+        token,
     };
 
     return (

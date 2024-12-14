@@ -1,0 +1,75 @@
+/* General form container */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    max-width: 24rem; /* 96px max width */
+    margin: 3.5rem auto;
+    gap: 1rem;
+    color: #4a4a4a;
+  }
+  
+  /* Form header */
+  .form-header {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 1rem 0;
+  }
+  
+  .form-title {
+    font-family: 'Prata', serif;
+    font-size: 1.875rem; /* 3xl */
+  }
+  
+  .form-divider {
+    border: none;
+    height: 1.5px;
+    width: 2rem;
+    background-color: #4a4a4a;
+  }
+  
+  /* Input fields */
+  .form-input {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #4a4a4a;
+    font-size: 0.875rem; /* sm */
+  }
+  
+  /* Footer with links */
+  .form-footer {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 0.875rem; /* sm */
+    margin-top: -0.5rem;
+  }
+  
+  .forgot-password,
+  .form-toggle {
+    cursor: pointer;
+    color: inherit;
+  }
+  
+  .forgot-password:hover,
+  .form-toggle:hover {
+    text-decoration: underline;
+  }
+  
+  /* Submit button */
+  .form-button {
+    background-color: #000;
+    color: #fff;
+    font-weight: 300; /* Light font weight */
+    padding: 0.5rem 2rem;
+    margin-top: 1rem;
+    cursor: pointer;
+    border: none;
+  }
+  
+  .form-button:hover {
+    background-color: #333;
+  }
+  

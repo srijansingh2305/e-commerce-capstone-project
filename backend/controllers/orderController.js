@@ -16,36 +16,232 @@ const razorpayInstance = new razorpay({
 })
 
 // Placing orders using COD Method
-const placeOrder = async (req,res) => {
+// const placeOrder = async (req,res) => {
     
-    try {
+//     try {
         
-        const { userId, items, amount, address} = req.body;
+//         const { userId, items, amount, address} = req.body;
+
+//         const orderData = {
+//             userId,
+//             items,
+//             address,
+//             amount,
+//             paymentMethod:"COD",
+//             payment:false,
+//             date: Date.now()
+//         }
+
+//         const newOrder = new orderModel(orderData)
+//         await newOrder.save()
+
+//         await userModel.findByIdAndUpdate(userId,{cartData:{}})
+
+//         res.json({success:true,message:"Order Placed"})
+
+
+//     } catch (error) {
+//         console.log(error)
+//         res.json({success:false,message:error.message})
+//     }
+
+// }
+
+// const placeOrder = async (req, res) => {
+//     try {
+//         const { userId, items, amount, address } = req.body;
+
+//         // Ensure items are structured correctly
+//         const structuredItems = items.map(item => ({
+//             _id: item._id,
+//             name: item.name,
+//             quantity: item.quantity,
+//             price: item.price,
+//             isElectronics: item.isElectronics || false, // Add this field
+//             ramSize: item.ramSize || null, // Only for electronics
+//             storageSize: item.storageSize || null // Only for electronics
+//         }));
+
+//         const orderData = {
+//             userId,
+//             items: structuredItems, // Use the structured items
+//             address,
+//             amount,
+//             paymentMethod: "COD",
+//             payment: false,
+//             date: Date.now()
+//         };
+
+//         const newOrder = new orderModel(orderData);
+//         await newOrder.save();
+
+//         await userModel.findByIdAndUpdate(userId, { cartData: {} });
+
+//         res.json({ success: true, message: "Order Placed" });
+//     } catch (error) {
+//         console.log(error);
+//         res.json({ success: false, message: error.message });
+//     }
+// };
+
+// const placeOrder = async (req, res) => {
+//     try {
+//         const { userId, items, amount, address } = req.body;
+
+//         const structuredItems = items.map(item => ({
+//             _id: item._id,
+//             name: item.name,
+//             quantity: item.quantity,
+//             price: item.price,
+//             isElectronics: item.isElectronics || false,
+//             ramSize: item.ramSize || null, // Ensure this is set correctly
+//             storageSize: item.storageSize || null, // Ensure this is set correctly
+//             image: item.image || []
+//         }));
+
+//         const orderData = {
+//             userId,
+//             items,
+//             address,
+//             amount,
+//             paymentMethod: "COD", // or whatever method you're using
+//             payment: false,
+//             date: Date.now()
+//         };
+
+//         const newOrder = new orderModel(orderData);
+//         await newOrder.save();
+
+//         // Clear the user's cart after placing the order
+//         await userModel.findByIdAndUpdate(userId, { cartData: {} });
+
+//         res.json({ success: true, message: "Order Placed" });
+//     } catch (error) {
+//         console.log(error);
+//         res.json({ success: false, message: error.message });
+//     }
+// };
+
+// This was working fine (below code)
+
+// const placeOrder = async (req, res) => {
+//     try {
+//         const { userId, items, amount, address } = req.body;
+
+//         const structuredItems = items.map(item => ({
+//             _id: item._id,
+//             name: item.name,
+//             quantity: item.quantity,
+//             price: item.price,
+//             isElectronics: item.isElectronics || false,
+//             ramSize: item.ramSize || null,
+//             storageSize: item.storageSize || null,
+//             size: item.size || null // Ensure this is included
+//         }));
+
+//         const orderData = {
+//             userId,
+//             items: structuredItems, // Ensure this includes the correct size
+//             address,
+//             amount,
+//             paymentMethod: "COD", // or whatever method you're using
+//             payment: false,
+//             date: Date.now()
+//         };
+
+//         const newOrder = new orderModel(orderData);
+//         await newOrder.save();
+
+//         // Clear the user's cart after placing the order
+//         await userModel.findByIdAndUpdate(userId, { cartData: {} });
+
+//         res.json({ success: true, message: "Order Placed" });
+//     } catch (error) {
+//         console.log(error);
+//         res.json({ success: false, message: error.message });
+//     }
+// };
+
+// Image was shown on the order page but size for both became N/A
+
+// const placeOrder = async (req, res) => {
+//     try {
+//         const { userId, items, amount, address } = req.body;
+
+//         // Ensure items are structured correctly
+//         const structuredItems = items.map(item => ({
+//             _id: item._id,
+//             name: item.name,
+//             quantity: item.quantity,
+//             price: item.price,
+//             isElectronics: item.isElectronics || false,
+//             ramSize: item.ramSize || null, // Only for electronics
+//             storageSize: item.storageSize || null, // Only for electronics
+//             image: item.image || [] // Ensure the image is included
+//         }));
+
+//         const orderData = {
+//             userId,
+//             items: structuredItems, // Use the structured items
+//             address,
+//             amount,
+//             paymentMethod: "COD", // or whatever method you're using
+//             payment: false,
+//             date: Date.now()
+//         };
+
+//         const newOrder = new orderModel(orderData);
+//         await newOrder.save();
+
+//         // Clear the user's cart after placing the order
+//         await userModel.findByIdAndUpdate(userId, { cartData: {} });
+
+//         res.json({ success: true, message: "Order Placed" });
+//     } catch (error) {
+//         console.log(error);
+//         res.json({ success: false, message: error.message });
+//     }
+// };
+
+const placeOrder = async (req, res) => {
+    try {
+        const { userId, items, amount, address } = req.body;
+
+        // Ensure items are structured correctly
+        const structuredItems = items.map(item => ({
+            _id: item._id,
+            name: item.name,
+            quantity: item.quantity,
+            price: item.price,
+            isElectronics: item.isElectronics || false,
+            ramSize: item.ramSize || null, // Only for electronics
+            storageSize: item.storageSize || null, // Only for electronics
+            size: item.size || null, // Ensure size is included
+            image: item.image || [] // Ensure the image is included
+        }));
 
         const orderData = {
             userId,
-            items,
+            items: structuredItems, // Use the structured items
             address,
             amount,
-            paymentMethod:"COD",
-            payment:false,
+            paymentMethod: "COD", // or whatever method you're using
+            payment: false,
             date: Date.now()
-        }
+        };
 
-        const newOrder = new orderModel(orderData)
-        await newOrder.save()
+        const newOrder = new orderModel(orderData);
+        await newOrder.save();
 
-        await userModel.findByIdAndUpdate(userId,{cartData:{}})
+        // Clear the user's cart after placing the order
+        await userModel.findByIdAndUpdate(userId, { cartData: {} });
 
-        res.json({success:true,message:"Order Placed"})
-
-
+        res.json({ success: true, message: "Order Placed" });
     } catch (error) {
-        console.log(error)
-        res.json({success:false,message:error.message})
+        console.log(error);
+        res.json({ success: false, message: error.message });
     }
-
-}
+};
 
 // Placing orders using Stripe Method
 const placeOrderStripe = async (req,res) => {

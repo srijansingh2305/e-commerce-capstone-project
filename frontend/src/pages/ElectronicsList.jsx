@@ -1,12 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { ShopContext } from '../context/ShopContext';
-import { assets } from '../assets/assets';
 import Title from '../components/Title';
-import ProductItem from '../components/ProductItem';
+import ElectronicsProductItem from '../components/ElectronicsProductItem';
+import './ElectronicsList.css';
 
 const ElectronicsList = () => {
   const { electronics, search, showSearch } = useContext(ShopContext);
-  const [showFilter, setShowFilter] = useState(false);
   const [filterElectronics, setFilterElectronics] = useState([]);
   const [category, setCategory] = useState([]);
   const [subCategory, setSubCategory] = useState([]);
@@ -73,63 +72,64 @@ const ElectronicsList = () => {
   }, [sortType]);
 
   return (
-    <div className='flex flex-col sm:flex-row gap-1 sm:gap-10 pt-10 border-t'>
+    <div className="electronics-container">
       
       {/* Filter Options */}
-      <div className='min-w-60'>
-        <p onClick={() => setShowFilter(!showFilter)} className='my-2 text-xl flex items-center cursor-pointer gap-2'>FILTERS
-          <img className={`h-3 sm:hidden ${showFilter ? 'rotate-90' : ''}`} src={assets.dropdown_icon} alt="" />
-        </p>
+      <div className="electronics-filter">
+        <p className="filter-title">FILTERS</p>
+        
         {/* Category Filter */}
-        <div className={`border border-gray-300 pl-5 py-3 mt-6 ${showFilter ? '' : 'hidden'} sm:block`}>
-          <p className='mb-3 text-sm font-medium'>CATEGORIES</p>
-          <div className='flex flex-col gap-2 text-sm font-light text-gray-700'>
-            <p className='flex gap-2'>
-              <input className='w-3' type="checkbox" value={'Electronics'} onChange={toggleCategory}/> Electronics
-            </p>
-            {/* Add more categories as needed */}
+        <div className="filter-category">
+          <p className="filter-title">CATEGORIES</p>
+          <div className="filter-items">
+            <label>
+              <input type="checkbox" value={'Electronics'} onChange={toggleCategory} /> Electronics
+            </label>
           </div>
         </div>
+
         {/* SubCategory Filter */}
-        <div className={`border border-gray-300 pl-5 py-3 my-5 ${showFilter ? '' : 'hidden'} sm:block`}>
-          <p className='mb-3 text-sm font-medium'>TYPE</p>
-          <div className='flex flex-col gap-2 text-sm font-light text-gray-700'>
-            <p className='flex gap-2'>
-              <input className='w-3' type="checkbox" value={'Gadgets'} onChange={toggleSubCategory}/> Gadgets
-            </p>
-            <p className='flex gap-2'>
-              <input className='w-3' type="checkbox" value={'Accessories'} onChange={toggleSubCategory}/> Accessories
-            </p>
-            {/* Add more subcategories as needed */}
+        <div className="filter-subcategory">
+          <p className="filter-title">TYPE</p>
+          <div className="filter-items">
+            <label>
+              <input type="checkbox" value={'Gadgets'} onChange={toggleSubCategory} /> Gadgets
+            </label>
+            <label>
+              <input type="checkbox" value={'Accessories'} onChange={toggleSubCategory} /> Accessories
+            </label>
           </div>
         </div>
       </div>
 
-      {/* Right Side */}
-      <div className='flex-1'>
-
-        <div className='flex justify-between text-base sm:text-2xl mb-4'>
-            <Title text1={'ALL'} text2={'ELECTRONICS'} />
-            {/* Product Sort */}
-            <select onChange={(e) => setSortType(e.target.value)} className='border-2 border-gray-300 text-sm px-2'>
-              <option value="relevant">Sort by: Relevant</option>
-              <option value="low-high">Sort by: Low to High</option>
-              <option value="high-low">Sort by: High to Low</option>
-            </select>
+      {/* Product List */}
+      <div className="electronics-list">
+        <div className="electronics-header">
+          <Title text1={'ElectroTrends'} text2={' Wire Wear '} />
+          <select onChange={(e) => setSortType(e.target.value)} className="sort-select">
+            <option value="relevant">Sort by: Relevant</option>
+            <option value="low-high">Sort by: Low to High</option>
+            <option value="high-low">Sort by: High to Low</option>
+          </select>
         </div>
 
         {/* Map Electronics */}
-        <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 gap-y-6'>
-          {
-            filterElectronics.map((item, index) => (
-              <ProductItem key={index} name={item.name} id={item._id} price={item.price} image={item.image} />
-            ))
-          }
+        <div className="electronics-grid">
+          {filterElectronics.map((item, index) => (
+            <ElectronicsProductItem 
+              key={index} 
+              name={item.name} 
+              id={item._id} 
+              price={item.price} 
+              image={item.image} 
+              // ramSize={item.ramSize}
+              // storageSize={item.storageSize}
+            />
+          ))}
         </div>
       </div>
-
     </div>
-  )
-}
+  );
+};
 
 export default ElectronicsList;

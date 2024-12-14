@@ -1,0 +1,31 @@
+.product-link {
+    color: #4A5568; /* Tailwind color gray-700 */
+    cursor: pointer;
+}
+
+.image-container {
+    overflow: hidden;
+}
+
+.product-image {
+    transition: transform 0.3s ease-in-out;
+}
+
+.product-image:hover {
+    transform: scale(1.1);
+}
+
+.product-name {
+    padding-top: 0.75rem;
+    padding-bottom: 0.25rem;
+    font-size: 0.875rem;
+}
+
+.product-price {
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.product-ram, .product-storage {
+    font-size: 0.875rem;
+}

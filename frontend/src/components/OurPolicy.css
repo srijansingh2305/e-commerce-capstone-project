@@ -1,0 +1,31 @@
+.policy-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 3rem;
+    text-align: center;
+    padding: 5rem 0;
+    font-size: 0.75rem;
+    color: #4A5568; /* Tailwind color gray-700 */
+}
+
+@media (min-width: 640px) {
+    .policy-container {
+        flex-direction: row;
+        gap: 0.5rem;
+    }
+}
+
+.policy-icon {
+    width: 3rem;
+    margin: auto;
+    margin-bottom: 1.25rem;
+}
+
+.policy-title {
+    font-weight: 600;
+}
+
+.policy-description {
+    color: #A0AEC0; /* Tailwind color gray-400 */
+}

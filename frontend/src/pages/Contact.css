@@ -1,0 +1,71 @@
+.contact-container {
+    text-align: center;
+    font-size: 2rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid;
+  }
+  
+  .contact-content {
+    margin-top: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2.5rem;
+    margin-bottom: 7rem;
+  }
+  
+  @media (min-width: 768px) {
+    .contact-content {
+      flex-direction: row;
+    }
+  }
+  
+  .contact-image {
+    width: 100%;
+    max-width: 30rem;
+  }
+  
+  .contact-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+  
+  .store-title {
+    font-weight: 600;
+    font-size: 1.25rem;
+    color: #4b5563;
+  }
+  
+  .store-info {
+    color: #6b7280;
+  }
+  
+  .contact-info {
+    color: #6b7280;
+  }
+  
+  .careers-title {
+    font-weight: 600;
+    font-size: 1.25rem;
+    color: #4b5563;
+  }
+  
+  .careers-info {
+    color: #6b7280;
+  }
+  
+  .explore-jobs-btn {
+    border: 1px solid black;
+    padding: 1rem 2rem;
+    font-size: 0.875rem;
+    transition: all 0.5s;
+  }
+  
+  .explore-jobs-btn:hover {
+    background-color: black;
+    color: white;
+  }
+  
