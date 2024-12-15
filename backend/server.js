@@ -1,6 +1,7 @@
 import express from 'express'
 import cors from 'cors'
-import 'dotenv/config'
+// import 'dotenv/config'
+import dotenv from 'dotenv';
 import connectDB from './config/mongodb.js'
 import connectCloudinary from './config/cloudinary.js'
 import userRouter from './routes/userRoute.js'
@@ -8,6 +9,9 @@ import productRouter from './routes/productRoute.js'
 import cartRouter from './routes/cartRoute.js'
 import orderRouter from './routes/orderRoute.js'
 import electronicsRouter from './routes/electronicsRoute.js';
+
+dotenv.config();
+
 
 // App Config
 const app = express()
