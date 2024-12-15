@@ -9,7 +9,7 @@ const LatestElectronicsCollection = () => {
     const [latestElectronics, setLatestElectronics] = useState([]); // State to hold the latest electronics
 
     useEffect(() => {
-        setLatestElectronics(electronics.slice(0, 10)); // Setting the latest electronics, adjusting the number as needed
+        setLatestElectronics(electronics.slice(0, 5)); // Setting the latest electronics, adjusting the number as needed
     }, [electronics]); // Dependency array to trigger effect when electronics data changes
 
     return (

@@ -13,7 +13,7 @@ const LatestCollection = () => {
     // Update latest products when the products in the context change
     useEffect(() => {
         // Slice the first 10 products from the products array
-        setLatestProducts(products.slice(0, 10));
+        setLatestProducts(products.slice(0, 5));
     }, [products]);
 
     return (
@@ -21,7 +21,7 @@ const LatestCollection = () => {
             <div className='header'>
                 <Title text1={'LATEST'} text2={'IN FASHION'} />
                 <p className='description'>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the.
+                    Discover the newest trends and must-have styles in our latest collection of fashion-forward clothing.
                 </p>
             </div>
             {/* Rendering Products */}

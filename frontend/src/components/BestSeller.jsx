@@ -29,7 +29,7 @@ const BestSeller = () => {
             <div className='header'>
                 <Title text1={'BEST'} text2={'SELLERS'} />
                 <p className='description'>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the.
+                    Explore our top-selling fashion items, carefully curated to bring you the best and latest in style.
                 </p>
             </div>
             <div className='product-grid'>

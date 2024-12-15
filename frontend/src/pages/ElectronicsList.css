@@ -67,6 +67,13 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
   }
+
+  .electronics-grid img {
+    width: 100% !important; /* Make images responsive */
+    height: 300px; /* Maintain aspect ratio */
+    object-fit: cover; /* Cover the container while maintaining aspect ratio */
+    border-radius: 0.5rem; /* Optional: Add rounded corners */
+}
   
   @media (min-width: 768px) {
     .electronics-grid {

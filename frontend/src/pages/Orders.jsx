@@ -1,99 +1,103 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { ShopContext } from '../context/ShopContext';
+import Title from '../components/Title';
 import axios from 'axios';
-import { toast } from 'react-toastify';
-import './Login.css';
+import './Orders.css';
 
-const Login = () => {
-  const [currentState, setCurrentState] = useState('Login'); // State to manage current form (Login/Sign Up)
-  const { token, setToken, navigate, backendUrl } = useContext(ShopContext); // Accessing context values
+const Orders = () => {
+  const { backendUrl, token, currency } = useContext(ShopContext);
+  const [orderData, setOrderData] = useState([]);
 
-  const [name, setName] = useState(''); // State for name input
-  const [password, setPassword] = useState(''); // State for password input
-  const [email, setEmail] = useState(''); // State for email input
-
-  const onSubmitHandler = async (event) => {
-    event.preventDefault(); // Prevent default form submission
+  const loadOrderData = async () => {
     try {
-      if (currentState === 'Sign Up') {
-        const response = await axios.post(backendUrl + '/api/user/register', { name, email, password });
-        if (response.data.success) {
-          setToken(response.data.token);
-          localStorage.setItem('token', response.data.token); // Save token in local storage
-        } else {
-          toast.error(response.data.message);
-        }
-      } else {
-        const response = await axios.post(backendUrl + '/api/user/login', { email, password });
-        if (response.data.success) {
-          setToken(response.data.token);
-          localStorage.setItem('token', response.data.token); // Save token in local storage
-        } else {
-          toast.error(response.data.message);
-        }
+      if (!token) {
+        return null;
+      }
+
+      const response = await axios.post(backendUrl + '/api/order/userorders', {}, { headers: { token } });
+      if (response.data.success) {
+        let allOrdersItem = [];
+        response.data.orders.forEach((order) => {
+          order.items.forEach((item) => {
+            item['status'] = order.status;
+            item['payment'] = order.payment;
+            item['paymentMethod'] = order.paymentMethod;
+            item['date'] = order.date;
+
+            if (item.isElectronics) {
+              item['ramSize'] = item.ramSize || 'N/A';
+              item['storageSize'] = item.storageSize || 'N/A';
+            } else {
+              item['size'] = item.size || 'N/A';
+            }
+
+            item['image'] = item.image || [];
+            allOrdersItem.push(item);
+          });
+        });
+        setOrderData(allOrdersItem.reverse());
       }
     } catch (error) {
-      console.log(error);
-      toast.error(error.message);
+      console.error('Error loading order data:', error);
     }
   };
 
   useEffect(() => {
-    if (token) {
-      navigate('/'); // Navigate to home page if token is set
-    }
-  }, [token]); // Dependency array to trigger effect when token changes
+    loadOrderData();
+  }, [token]);
 
   return (
-    <form onSubmit={onSubmitHandler} className="login-form">
-      <div className="form-header">
-        <p className="form-title">{currentState}</p>
-        <hr className="form-divider" />
+    <div className="orders-container">
+      <div className="orders-title">
+        <Title text1={'MY'} text2={'ORDERS'} />
       </div>
 
-      {currentState === 'Login' ? null : (
-        <input
-          onChange={(e) => setName(e.target.value)}
-          value={name}
-          type="text"
-          className="form-input"
-          placeholder="Name"
-          required
-        />
-      )}
-      <input
-        onChange={(e) => setEmail(e.target.value)}
-        value={email}
-        type="email"
-        className="form-input"
-        placeholder="Email"
-        required
-      />
-      <input
-        onChange={(e) => setPassword(e.target.value)}
-        value={password}
-        type="password"
-        className="form-input"
-        placeholder="Password"
-        required
-      />
-
-      <div className="form-footer">
-        <p className="forgot-password">Forgot your password?</p>
-        {currentState === 'Login' ? (
-          <p onClick={() => setCurrentState('Sign Up')} className="form-toggle">
-            Create account
-          </p>
-        ) : (
-          <p onClick={() => setCurrentState('Login')} className="form-toggle">
-            Login Here
-          </p>
-        )}
+      <div className="orders-list">
+        {orderData.map((item, index) => (
+          <div key={index} className="order-item">
+            <div className="order-details">
+              <img
+                className="order-image"
+                src={item.image && item.image.length > 0 ? item.image[0] : 'default_image_url'}
+                alt={item.name}
+              />
+              <div>
+                <p className="order-name">{item.name}</p>
+                <div className="order-info">
+                  <p>
+                    {currency}
+                    {item.price}
+                  </p>
+                  <p>Quantity: {item.quantity}</p>
+                  <p>
+                    Size:{' '}
+                    {item.isElectronics
+                      ? `RAM: ${item.ramSize}, Storage: ${item.storageSize}`
+                      : item.size}
+                  </p>
+                </div>
+                <p className="order-date">
+                  Date: <span>{new Date(item.date).toDateString()}</span>
+                </p>
+                <p className="order-payment">
+                  Payment: <span>{item.paymentMethod}</span>
+                </p>
+              </div>
+            </div>
+            <div className="order-status">
+              <div className="status-indicator">
+                <div className="status-dot"></div>
+                <p>{item.status}</p>
+              </div>
+              <button onClick={loadOrderData} className="track-button">
+                Track Order
+              </button>
+            </div>
+          </div>
+        ))}
       </div>
-
-      <button className="form-button">{currentState === 'Login' ? 'Sign In' : 'Sign Up'}</button>
-    </form>
+    </div>
   );
 };
 
-export default Login; // Exporting Login component
+export default Orders;

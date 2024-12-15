@@ -62,13 +62,13 @@ const ElectronicsProduct = () => {
             <p>Select RAM Size</p>
             <div className='flex gap-2'>
               {productData.ramSize.map((item, index) => (
-                <button onClick={() => setSelectedRamSize(item)} className={`border py-2 px-4 bg-gray-100 ${item === selectedRamSize ? 'border-orange-500' : ''}`} key={index}>{item}</button>
+                <button onClick={() => setSelectedRamSize(item)} className={`border py-2 px-4 bg-gray-200 ${item === selectedRamSize ? 'border-gray-800' : ''}`} key={index}>{item}</button>
               ))}
             </div>
             <p>Select Storage Size</p>
             <div className='flex gap-2'>
               {productData.storageSize.map((item, index) => (
-                <button onClick={() => setSelectedStorageSize(item)} className={`border py-2 px-4 bg-gray-100 ${item === selectedStorageSize ? 'border-orange-500' : ''}`} key={index}>{item}</button>
+                <button onClick={() => setSelectedStorageSize(item)} className={`border py-2 px-4 bg-gray-200 ${item === selectedStorageSize ? 'border-gray-800' : ''}`} key={index}>{item}</button>
               ))}
             </div>
           </div>

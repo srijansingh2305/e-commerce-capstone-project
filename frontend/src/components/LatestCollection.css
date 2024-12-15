@@ -34,6 +34,13 @@
     gap-row: 1.5rem;
 }
 
+.product-grid img {
+    width: 100% !important; /* Make images responsive */
+    height: 800px; /* Maintain aspect ratio */
+    object-fit: cover; /* Cover the container while maintaining aspect ratio */
+    border-radius: 0.5rem; /* Optional: Add rounded corners */
+}
+
 @media (min-width: 640px) {
     .product-grid {
         grid-template-columns: repeat(3, 1fr);

@@ -127,7 +127,7 @@ const AddElectronics = ({ token }) => {
 
                 <div>
                     <p className='mb-2'>Product Price</p>
-                    <input onChange={(e) => setPrice(e.target.value)} value={price} className='w-full px-3 py-2 sm:w-[120px]' type="number" placeholder='25000' required />
+                    <input onChange={(e) => setPrice(e.target.value)} value={price} className='w-full px-3 py-2 sm:w-[120px]' type="number" placeholder='25,000' required />
                 </div>
             </div>
 

@@ -104,7 +104,7 @@ const ElectronicsList = () => {
       {/* Product List */}
       <div className="electronics-list">
         <div className="electronics-header">
-          <Title text1={'ElectroTrends'} text2={' Wire Wear '} />
+          <Title text1={'ElectroTrends'} text2={'by Wire Wear '} />
           <select onChange={(e) => setSortType(e.target.value)} className="sort-select">
             <option value="relevant">Sort by: Relevant</option>
             <option value="low-high">Sort by: Low to High</option>
