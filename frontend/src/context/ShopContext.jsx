@@ -6,16 +6,16 @@ import axios from 'axios';
 export const ShopContext = createContext();
 
 const ShopContextProvider = (props) => {
-    const currency = 'Rs ';
-    const delivery_fee = 250;
-    const backendUrl = import.meta.env.VITE_BACKEND_URL;
-    const [search, setSearch] = useState('');
-    const [showSearch, setShowSearch] = useState(false);
-    const [cartItems, setCartItems] = useState({});
-    const [products, setProducts] = useState([]);
-    const [electronics, setElectronics] = useState([]);
-    const [token, setToken] = useState('');
-    const navigate = useNavigate();
+    const currency = 'Rs '; // Currency symbol
+    const delivery_fee = 250; // Delivery fee
+    const backendUrl = import.meta.env.VITE_BACKEND_URL; // Backend URL
+    const [search, setSearch] = useState(''); // Search state
+    const [showSearch, setShowSearch] = useState(false); // State to control search bar visibility
+    const [cartItems, setCartItems] = useState({}); // Cart items state
+    const [products, setProducts] = useState([]); // Products state
+    const [electronics, setElectronics] = useState([]); // Electronics state
+    const [token, setToken] = useState(''); // Token state for user authentication
+    const navigate = useNavigate(); // Hook for navigation
 
     const addToCart = async (itemId, size) => {
         if (!size) {
@@ -46,6 +46,7 @@ const ShopContextProvider = (props) => {
             }
         }
     };
+
     const addElectronicsToCart = async (itemId, ramSize, storageSize) => {
         if (!ramSize || !storageSize) {
             toast.error('Select RAM and Storage Size');
@@ -66,6 +67,7 @@ const ShopContextProvider = (props) => {
         }
         setCartItems(cartData);
     
+        // Update the database
         if (token) {
             try {
                 await axios.post(backendUrl + '/api/cart/add', { itemId, ramSize, storageSize }, { headers: { token } });
@@ -89,7 +91,6 @@ const ShopContextProvider = (props) => {
         return totalCount;
     };
     
-
     const updateQuantity = async (itemId, size, quantity) => {
         if (quantity < 0) {
             toast.error('Quantity cannot be negative');
@@ -98,10 +99,10 @@ const ShopContextProvider = (props) => {
 
         let cartData = structuredClone(cartItems);
         if (cartData[itemId]) {
-            cartData[itemId ][size] = quantity;
+            cartData[itemId][size] = quantity;
             setCartItems(cartData);
             
-
+            // Update the database
             if (token) {
                 try {
                     const response = await axios.post(backendUrl + '/api/cart/update', { itemId, size, quantity }, { headers: { token } });
@@ -167,7 +168,6 @@ const ShopContextProvider = (props) => {
         }
     };
 
-
     const getUserCart = async (token) => {
         try {
             const response = await axios.post(`${backendUrl}/api/cart/get`, {}, { headers: { token } });
@@ -185,7 +185,7 @@ const ShopContextProvider = (props) => {
     useEffect(() => {
         getProductsData();
         getElectronicsData();
-    }, []);
+    }, []); // Fetch products and electronics data on component mount
 
     useEffect(() => {
         if (!token && localStorage.getItem('token')) {
@@ -195,7 +195,7 @@ const ShopContextProvider = (props) => {
         if (token) {
             getUserCart(token);
         }
-    }, [token]);
+    }, [token]); // Fetch user cart whenever token changes
 
     const value = {
         products,
@@ -226,4 +226,4 @@ const ShopContextProvider = (props) => {
     );
 };
 
-export default ShopContextProvider;
+export default ShopContextProvider; // Exporting ShopContextProvider component

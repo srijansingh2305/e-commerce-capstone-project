@@ -3,16 +3,16 @@ import { useContext } from 'react'
 import { ShopContext } from '../context/ShopContext'
 import { useSearchParams } from 'react-router-dom'
 import { useEffect } from 'react'
-import {toast} from 'react-toastify'
+import { toast } from 'react-toastify'
 import axios from 'axios'
 
 const Verify = () => {
 
-    const { navigate, token, setCartItems, backendUrl } = useContext(ShopContext)
-    const [searchParams, setSearchParams] = useSearchParams()
+    const { navigate, token, setCartItems, backendUrl } = useContext(ShopContext) // Accessing context values
+    const [searchParams, setSearchParams] = useSearchParams() // Accessing search parameters from URL
     
-    const success = searchParams.get('success')
-    const orderId = searchParams.get('orderId')
+    const success = searchParams.get('success') // Getting 'success' parameter
+    const orderId = searchParams.get('orderId') // Getting 'orderId' parameter
 
     const verifyPayment = async () => {
         try {
@@ -24,10 +24,10 @@ const Verify = () => {
             const response = await axios.post(backendUrl + '/api/order/verifyStripe', { success, orderId }, { headers: { token } })
 
             if (response.data.success) {
-                setCartItems({})
-                navigate('/orders')
+                setCartItems({}) // Clearing cart items on successful verification
+                navigate('/orders') // Navigate to orders page on success
             } else {
-                navigate('/cart')
+                navigate('/cart') // Navigate to cart page on failure
             }
 
         } catch (error) {
@@ -37,7 +37,7 @@ const Verify = () => {
     }
 
     useEffect(() => {
-        verifyPayment()
+        verifyPayment() // Verify payment on component mount or when token changes
     }, [token])
 
     return (
@@ -47,4 +47,4 @@ const Verify = () => {
     )
 }
 
-export default Verify
+export default Verify // Exporting Verify component

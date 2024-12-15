@@ -1,6 +1,6 @@
-// backend/models/electronicsModel.js
 import mongoose from "mongoose";
 
+// Define schema for electronics
 const electronicsSchema = new mongoose.Schema({
     name: { type: String, required: true },
     description: { type: String, required: true },
@@ -14,6 +14,7 @@ const electronicsSchema = new mongoose.Schema({
     bestseller: { type: Boolean, default: false },
 });
 
+// Create model for electronics
 const electronicsModel = mongoose.models.electronics || mongoose.model("electronics", electronicsSchema);
 
-export default electronicsModel;
+export default electronicsModel; // Exporting electronics model

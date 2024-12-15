@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+// Define schema for users
 const userSchema = new mongoose.Schema({
     name: { type: String, required: true },
     email: { type: String, required: true, unique: true },
@@ -7,6 +8,7 @@ const userSchema = new mongoose.Schema({
     cartData: { type: Object, default: {} }
 }, { minimize: false })
 
-const userModel = mongoose.models.user || mongoose.model('user',userSchema);
+// Create model for users
+const userModel = mongoose.models.user || mongoose.model('user', userSchema);
 
-export default userModel
+export default userModel; // Exporting user model

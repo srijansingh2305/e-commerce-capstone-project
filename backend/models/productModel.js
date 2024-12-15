@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+// Define schema for products
 const productSchema = new mongoose.Schema({
     name: { type: String, required: true },
     description: { type: String, required: true },
@@ -12,6 +13,7 @@ const productSchema = new mongoose.Schema({
     date: { type: Number, required: true }
 })
 
-const productModel  = mongoose.models.product || mongoose.model("product",productSchema);
+// Create model for products
+const productModel  = mongoose.models.product || mongoose.model("product", productSchema);
 
-export default productModel
+export default productModel; // Exporting product model

@@ -23,11 +23,9 @@ const Contact = () => {
         </div>
       </div>
 
-      <NewsletterBox/>
+      <NewsletterBox />
     </div>
   )
 }
 
-export default Contact
-
-
+export default Contact // Exporting Contact component

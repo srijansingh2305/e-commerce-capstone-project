@@ -1,14 +1,12 @@
-import React from 'react'
-import { useEffect } from 'react'
-import { useState } from 'react'
 import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 import { backendUrl, currency } from '../App'
 import { toast } from 'react-toastify'
 import { assets } from '../assets/assets'
 
 const Orders = ({ token }) => {
 
-  const [orders, setOrders] = useState([])
+  const [orders, setOrders] = useState([]) // State for storing list of orders
 
   const fetchAllOrders = async () => {
 
@@ -20,32 +18,30 @@ const Orders = ({ token }) => {
 
       const response = await axios.post(backendUrl + '/api/order/list', {}, { headers: { token } })
       if (response.data.success) {
-        setOrders(response.data.orders.reverse())
+        setOrders(response.data.orders.reverse()) // Update orders state with fetched data
       } else {
-        toast.error(response.data.message)
+        toast.error(response.data.message) // Display error message
       }
 
     } catch (error) {
-      toast.error(error.message)
+      toast.error(error.message) // Display error message
     }
-
-
   }
 
-  const statusHandler = async ( event, orderId ) => {
+  const statusHandler = async (event, orderId) => {
     try {
-      const response = await axios.post(backendUrl + '/api/order/status' , {orderId, status:event.target.value}, { headers: {token}})
+      const response = await axios.post(backendUrl + '/api/order/status', { orderId, status: event.target.value }, { headers: { token } })
       if (response.data.success) {
-        await fetchAllOrders()
+        await fetchAllOrders() // Refresh orders list
       }
     } catch (error) {
       console.log(error)
-      toast.error(response.data.message)
+      toast.error(response.data.message) // Display error message
     }
   }
 
   useEffect(() => {
-    fetchAllOrders();
+    fetchAllOrders() // Fetch all orders on component mount
   }, [token])
 
   return (
@@ -96,4 +92,4 @@ const Orders = ({ token }) => {
   )
 }
 
-export default Orders
+export default Orders // Exporting Orders component

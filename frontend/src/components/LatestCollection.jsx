@@ -5,10 +5,14 @@ import ProductItem from './ProductItem';
 import './LatestCollection.css';
 
 const LatestCollection = () => {
+    // Get products from the ShopContext
     const { products } = useContext(ShopContext);
+    // Initialize state to store the latest products
     const [latestProducts, setLatestProducts] = useState([]);
 
+    // Update latest products when the products in the context change
     useEffect(() => {
+        // Slice the first 10 products from the products array
         setLatestProducts(products.slice(0, 10));
     }, [products]);
 

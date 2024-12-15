@@ -6,9 +6,9 @@ import { BrowserRouter } from 'react-router-dom'
 import ShopContextProvider from './context/ShopContext.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <BrowserRouter>
-    <ShopContextProvider>
-      <App />
+  <BrowserRouter> {/* Setting up BrowserRouter for routing */}
+    <ShopContextProvider> {/* Providing ShopContext to the app */}
+      <App /> {/* Main App component */}
     </ShopContextProvider>
   </BrowserRouter>,
 )

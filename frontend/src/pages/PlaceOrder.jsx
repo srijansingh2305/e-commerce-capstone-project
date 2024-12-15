@@ -8,8 +8,8 @@ import { toast } from 'react-toastify';
 import './PlaceOrder.css'; // Import external CSS file
 
 const PlaceOrder = () => {
-    const [method, setMethod] = useState('cod');
-    const { navigate, backendUrl, token, cartItems, setCartItems, getCartAmount, delivery_fee, products, electronics } = useContext(ShopContext);
+    const [method, setMethod] = useState('cod'); // State to manage selected payment method
+    const { navigate, backendUrl, token, cartItems, setCartItems, getCartAmount, delivery_fee, products, electronics } = useContext(ShopContext); // Accessing context values
 
     const [formData, setFormData] = useState({
         firstName: '',
@@ -25,7 +25,7 @@ const PlaceOrder = () => {
 
     const onChangeHandler = (event) => {
         const { name, value } = event.target;
-        setFormData((data) => ({ ...data, [name]: value }));
+        setFormData((data) => ({ ...data, [name]: value })); // Update form data state
     };
 
     const initPay = (order) => {
@@ -51,11 +51,11 @@ const PlaceOrder = () => {
             }
         };
         const rzp = new window.Razorpay(options);
-        rzp.open();
+        rzp.open(); // Initialize Razorpay payment
     };
 
     const onSubmitHandler = async (event) => {
-        event.preventDefault();
+        event.preventDefault(); // Prevent default form submission
         try {
             let orderItems = [];
 
@@ -173,4 +173,4 @@ const PlaceOrder = () => {
     );
 };
 
-export default PlaceOrder;
+export default PlaceOrder; // Exporting PlaceOrder component

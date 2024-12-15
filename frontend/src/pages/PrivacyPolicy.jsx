@@ -40,4 +40,4 @@ const PrivacyPolicy = () => {
     );
 };
 
-export default PrivacyPolicy;
+export default PrivacyPolicy; // Exporting PrivacyPolicy component

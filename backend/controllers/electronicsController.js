@@ -54,6 +54,7 @@ const listElectronics = async (req, res) => {
     }
 };
 
+// Function to remove electronics
 const removeElectronics = async (req, res) => {
     try {
         
@@ -66,6 +67,7 @@ const removeElectronics = async (req, res) => {
     }
 }
 
+// Function to get single electronics data
 const singleElectronics = async (req, res) => {
     try {
         

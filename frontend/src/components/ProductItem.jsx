@@ -1,20 +1,20 @@
-import React, { useContext } from 'react';
-import { ShopContext } from '../context/ShopContext';
-import { Link } from 'react-router-dom';
-import './ProductItem.css';
+import React, { useContext } from 'react'; // Importing necessary hooks and libraries
+import { ShopContext } from '../context/ShopContext'; // Importing context for shop data
+import { Link } from 'react-router-dom'; // Importing Link component for navigation
+import './ProductItem.css'; // Importing CSS file for styling
 
 const ProductItem = ({ id, image, name, price }) => {
-    const { currency } = useContext(ShopContext);
+    const { currency } = useContext(ShopContext); // Accessing currency from context
 
     return (
-        <Link onClick={() => scrollTo(0, 0)} className='product-link' to={`/product/${id}`}>
+        <Link onClick={() => scrollTo(0, 0)} className='product-link' to={`/product/${id}`}> {/* Link to product details page */}
             <div className='image-container'>
-                <img className='product-image' src={image[0]} alt={name} />
+                <img className='product-image' src={image[0]} alt={name} /> 
             </div>
-            <p className='product-name'>{name}</p>
-            <p className='product-price'>{currency}{price}</p>
+            <p className='product-name'>{name}</p> 
+            <p className='product-price'>{currency}{price}</p> 
         </Link>
     );
 }
 
-export default ProductItem;
+export default ProductItem; // Exporting ProductItem component

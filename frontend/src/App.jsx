@@ -19,32 +19,30 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Verify from './pages/Verify'
 
-
-
 const App = () => {
   return (
     <div className='px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]'>
-      <ToastContainer />
-      <Navbar />
-      <SearchBar />
+      <ToastContainer /> {/* Container for displaying toast notifications */}
+      <Navbar /> {/* Navbar component */}
+      <SearchBar /> {/* SearchBar component */}
       <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/collection' element={<Collection />} />
-        <Route path='/about' element={<About />} />
-        <Route path='/contact' element={<Contact />} />
-        <Route path='/product/:productId' element={<Product />} />
-        <Route path="/electronicsproduct/:productId" element={<ElectronicsProduct/>} />
-        <Route path='/cart' element={<Cart />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/place-order' element={<PlaceOrder />} />
-        <Route path='/orders' element={<Orders />} />
-        <Route path='/verify' element={<Verify />} />
-        <Route path='/electronicslist' element={<ElectronicsList />} />
-        <Route path='/privacy-policy' element={<PrivacyPolicy />} />
+        <Route path='/' element={<Home />} /> {/* Home page route */}
+        <Route path='/collection' element={<Collection />} /> {/* Collection page route */}
+        <Route path='/about' element={<About />} /> {/* About page route */}
+        <Route path='/contact' element={<Contact />} /> {/* Contact page route */}
+        <Route path='/product/:productId' element={<Product />} /> {/* Product page route */}
+        <Route path="/electronicsproduct/:productId" element={<ElectronicsProduct />} /> {/* ElectronicsProduct page route */}
+        <Route path='/cart' element={<Cart />} /> {/* Cart page route */}
+        <Route path='/login' element={<Login />} /> {/* Login page route */}
+        <Route path='/place-order' element={<PlaceOrder />} /> {/* PlaceOrder page route */}
+        <Route path='/orders' element={<Orders />} /> {/* Orders page route */}
+        <Route path='/verify' element={<Verify />} /> {/* Verify page route */}
+        <Route path='/electronicslist' element={<ElectronicsList />} /> {/* ElectronicsList page route */}
+        <Route path='/privacy-policy' element={<PrivacyPolicy />} /> {/* PrivacyPolicy page route */}
       </Routes>
-      <Footer />
+      <Footer /> {/* Footer component */}
     </div>
   )
 }
 
-export default App
+export default App // Exporting App component

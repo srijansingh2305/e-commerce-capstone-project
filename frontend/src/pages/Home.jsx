@@ -9,14 +9,14 @@ import LatestElectronicsCollection from '../components/LatestElectronicsCollecti
 const Home = () => {
   return (
     <div>
-      <Hero />
-      <LatestCollection/>
-      <LatestElectronicsCollection/>
-      <BestSeller/>
-      <OurPolicy/>
-      <NewsletterBox/>
+      <Hero /> {/* Hero section */}
+      <LatestCollection/> {/* Latest fashion collection */}
+      <LatestElectronicsCollection/> {/* Latest electronics collection */}
+      <BestSeller/> {/* Best selling products */}
+      <OurPolicy/> {/* Our policy section */}
+      <NewsletterBox/> {/* Newsletter subscription box */}
     </div>
   )
 }
 
-export default Home
+export default Home // Exporting Home component

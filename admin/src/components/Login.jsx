@@ -5,21 +5,21 @@ import { toast } from 'react-toastify';
 import './Login.css';  // Import the CSS file
 
 const Login = ({ setToken }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState(''); // State for email input
+  const [password, setPassword] = useState(''); // State for password input
 
   const onSubmitHandler = async (e) => {
     try {
-      e.preventDefault();
+      e.preventDefault(); // Prevent default form submission
       const response = await axios.post(backendUrl + '/api/user/admin', { email, password });
       if (response.data.success) {
-        setToken(response.data.token);
+        setToken(response.data.token); // Set token on successful login
       } else {
-        toast.error(response.data.message);
+        toast.error(response.data.message); // Display error message
       }
     } catch (error) {
       console.log(error);
-      toast.error(error.message);
+      toast.error(error.message); // Display error message
     }
   };
 
@@ -59,4 +59,4 @@ const Login = ({ setToken }) => {
   );
 };
 
-export default Login;
+export default Login; // Exporting Login component

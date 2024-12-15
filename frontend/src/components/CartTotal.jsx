@@ -3,10 +3,13 @@ import { ShopContext } from '../context/ShopContext';
 import Title from './Title';
 import './CartTotal.css';
 
+// CartTotal component displays the total cost of items in the cart
 const CartTotal = () => {
+    // Get the currency, delivery fee, and cart amount from the ShopContext
     const { currency, delivery_fee, getCartAmount } = useContext(ShopContext);
 
     return (
+        // Container for the cart total
         <div className='cart-total-container'>
             <div className='title'>
                 <Title text1={'CART'} text2={'TOTALS'} />
