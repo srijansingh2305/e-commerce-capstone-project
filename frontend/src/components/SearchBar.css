@@ -1,7 +1,7 @@
 .search-bar-container {
-    border-top: 1px solid #E5E7EB; /* Tailwind color gray-300 */
-    border-bottom: 1px solid #E5E7EB;
-    background-color: #F9FAFB; /* Tailwind color gray-50 */
+    border-top: 1px solid #babcbe; /* Tailwind color gray-300 */
+    border-bottom: 1px solid #babcbe;
+    background-color: #ececec; /* Tailwind color gray-50 */
     text-align: center;
 }
 

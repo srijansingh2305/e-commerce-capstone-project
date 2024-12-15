@@ -37,6 +37,16 @@
     border-radius: 4px;
     padding: 0.75rem;
     width: 100%;
+    background-color: #fafafa !important;
+    
+}
+.input:focus { 
+    border-color: #010911; /* Change border color on focus */ 
+    background-color: #e0f7fa;
+}
+.input:valid { 
+    border-color: #010f04; /* Change border color when input is valid */
+    background-color: #045e19;
 }
 
 /* Cart Total Container */
@@ -44,7 +54,7 @@
     border: 1px solid #ddd;
     padding: 1.5rem;
     border-radius: 6px;
-    background-color: #fafafa;
+    background-color: #fafafa !important;
 }
 
 /* Payment Section */
@@ -74,8 +84,8 @@
 }
 
 .payment-option.selected {
-    border-color: #4CAF50;
-    background-color: #e9ffe9;
+    border-color: #323a32;
+    background-color: #bdbebd;
 }
 
 .payment-option .circle {
@@ -86,8 +96,8 @@
 }
 
 .payment-option.selected .circle {
-    background-color: #4CAF50;
-    border-color: #4CAF50;
+    background-color: rgb(55, 65, 81);
+    border-color: #3b3d3b;
 }
 
 /* Submit Button */
@@ -97,10 +107,10 @@
 }
 
 .submit-button button {
-    background-color: #000;
-    color: #fff;
+    /* background-color: #000; */
+    color: black;
     padding: 0.75rem 2rem;
-    border: none;
+    border: 1px solid black;
     border-radius: 4px;
     cursor: pointer;
     text-transform: uppercase;
@@ -108,7 +118,8 @@
 }
 
 .submit-button button:hover {
-    background-color: #333;
+    background-color: rgb(55, 65, 81);
+    color: white;
 }
 
 /* Title Styling */

@@ -17,40 +17,6 @@ const ShopContextProvider = (props) => {
     const [token, setToken] = useState('');
     const navigate = useNavigate();
 
-    // const addToCart = async (itemId, size) => {
-    //     if (!size) {
-    //         toast.error('Select Product Size');
-    //         return;
-    //     }
-    
-    //     let cartData = structuredClone(cartItems);
-    //     console.log("Current Cart Items Before Adding:", cartData);
-    
-    //     if (cartData[itemId]) {
-    //         if (cartData[itemId][size]) {
-    //             cartData[itemId][size] += 1;
-    //         } else {
-    //             cartData[itemId][size] = 1;
-    //         }
-    //     } else {
-    //         cartData[itemId] = {};
-    //         cartData[itemId][size] = 1;
-    //     }
-    //     setCartItems(cartData);
-        
-    //     console.log("Cart Items After Adding:", cartData);
-    //     console.log("Total Count After Adding:", getCartCount()); // Log the count after adding
-    
-    //     if (token) {
-    //         try {
-    //             const response = await axios.post(backendUrl + '/api/cart/add', { itemId, size }, { headers: { token } });
-    //             console.log("Response from add to cart API:", response.data);
-    //         } catch (error) {
-    //             console.error("Error adding to cart:", error);
-    //             toast.error(error.message);
-    //         }
-    //     }
-    // };
     const addToCart = async (itemId, size) => {
         if (!size) {
             toast.error('Select Product Size');
@@ -201,18 +167,7 @@ const ShopContextProvider = (props) => {
         }
     };
 
-    // const getUserCart = async (token) => {
-    //     try {
-    //         const response = await axios.post(`${backendUrl}/api/cart/get`, {}, { headers: { token } });
-    //         if (response.data.success) {
-    //             setCartItems(response.data.cartData);
-    //             console.log("User  cart fetched successfully:", response.data.cartData);
-    //         }
-    //     } catch (error) {
-    //         console.error("Error fetching user cart:", error);
-    //         toast.error(error.message);
-    //     }
-    // };
+
     const getUserCart = async (token) => {
         try {
             const response = await axios.post(`${backendUrl}/api/cart/get`, {}, { headers: { token } });

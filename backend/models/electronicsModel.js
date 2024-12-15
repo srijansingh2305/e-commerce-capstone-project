@@ -10,7 +10,8 @@ const electronicsSchema = new mongoose.Schema({
     ramSize: { type: Array, required: true },
     storageSize: { type: Array, required: true },
     subCategory: { type: String, required: true },
-    date: { type: Number, required: true }
+    date: { type: Number, required: true },
+    bestseller: { type: Boolean, default: false },
 });
 
 const electronicsModel = mongoose.models.electronics || mongoose.model("electronics", electronicsSchema);
