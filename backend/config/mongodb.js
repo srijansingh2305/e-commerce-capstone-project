@@ -69,7 +69,7 @@ const connectDB = async () => {
   } finally {
     setTimeout(() => {
         client.close();
-    }, 2500);
+    }, 25000);
     // Ensures that the client will close when you finish/error
     
   }
