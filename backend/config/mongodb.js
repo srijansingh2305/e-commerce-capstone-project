@@ -67,12 +67,15 @@ const connectDB = async () => {
   } catch (error) {
     console.error("Error connecting to MongoDB:", error);
   } finally {
+    setTimeout(() => {
+        client.close();
+    }, 2500);
     // Ensures that the client will close when you finish/error
-    await client.close();
+    
   }
 };
 
 // Uncomment the line below to test the connection during development
-// connectDB().catch(console.error);
+connectDB().catch(console.error);
 
 export default connectDB;
