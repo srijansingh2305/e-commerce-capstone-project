@@ -1,3 +1,15 @@
-node_modules
+# Node.js specific files
+node_modules/
 
-.env
+# Environment files
+*.env
+backend/.env
+frontend/.env
+
+# Logs
+logs/
+*.log
+
+# System files
+.DS_Store
+Thumbs.db
