@@ -11,7 +11,7 @@ import ElectronicsList from './pages/ElectronicsList';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-export const backendUrl = "https://e-commerce-capstone-project-4.onrender.com"
+export const backendUrl = "https://e-commerce-capstone-project-5.onrender.com"
 export const currency = 'Rs '
 
 const App = () => {
