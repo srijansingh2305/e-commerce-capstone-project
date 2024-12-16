@@ -8,7 +8,7 @@ export const ShopContext = createContext();
 const ShopContextProvider = (props) => {
     const currency = 'Rs '; // Currency symbol
     const delivery_fee = 250; // Delivery fee
-    const backendUrl = import.meta.env.VITE_BACKEND_URL; // Backend URL
+    const backendUrl = "https://e-commerce-capstone-project-4.onrender.com"; // Backend URL
     const [search, setSearch] = useState(''); // Search state
     const [showSearch, setShowSearch] = useState(false); // State to control search bar visibility
     const [cartItems, setCartItems] = useState({}); // Cart items state
