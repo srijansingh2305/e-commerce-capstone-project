@@ -76,7 +76,7 @@ The admin panel of WireWear ensures smooth operations and data management, provi
   5. Select M0 & Your Region & Create Database
   6. Setup Username & Password & Create User
   7. NowClick on Finish & Close
-  8. Whitelist IP0.0.0.0 & Clickon Add Entry
+  8. Whitelist IP 0.0.0.0 & Clickon Add Entry
   9. Now Clickon Connect
   10. Now Select Compass Option
   11. And Copy the ConnectionString
