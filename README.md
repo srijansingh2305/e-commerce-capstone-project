@@ -121,6 +121,6 @@ The admin panel of WireWear ensures smooth operations and data management, provi
   
 ---
 
-#### I've set up Tailwind CSS for styling in the frontend project. You can use it, but some pages were causing issues, so some files have separate CSS files.
+#### I've set up Tailwind CSS for styling in the frontend project, but some pages were causing issues, so some files have separate CSS files.
 
-#### Because of the privacy policy page, some browsers can cause issues while running the front-end, if such issue persist , please use a different browser ex:- chrome. So far I've seen that brave adblocker has caused this issue oter than that the project runs asolutely fine on all other broswer.
+#### Because of the privacy policy page, some browsers can cause issues while running the front-end, if such issue persist , please use a different browser ex:- chrome. So far I've seen that brave adblocker has caused this issue other than that the project runs absolutely fine on all other broswer.
