@@ -72,19 +72,19 @@ app.use('/api/order', orderRouter);
 app.use('/api/electronics', electronicsRouter);
 
 // Serve static files from the React app's dist directory
-app.use(express.static(path.join(__dirname, 'frontend', 'dist'))); // For frontend
+app.use(express.static(path.join(__dirname, 'frontend'))); // For frontend
 
 // Serve static files from the admin panel's dist directory
-app.use('/admin', express.static(path.join(__dirname, '..', 'admin', 'dist'))); // For admin panel
+app.use('/admin', express.static(path.join(__dirname, '..', 'admin'))); // For admin panel
 
 // The "catchall" handler for frontend: for any request that doesn't match one above, send back index.html.
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'frontend', 'dist', 'index.html')); // Adjusted to point to frontend dist
+    res.sendFile(path.join(__dirname, 'frontend', 'index.html')); // Adjusted to point to frontend dist
 });
 
 // The "catchall" handler for admin panel: for any request that doesn't match one above, send back index.html.
 app.get('/admin/*', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'admin', 'dist', 'index.html')); // Adjusted to point to admin dist
+    res.sendFile(path.join(__dirname, '..', 'admin', 'index.html')); // Adjusted to point to admin dist
 });
 
 // Test Route
