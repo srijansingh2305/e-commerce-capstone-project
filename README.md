@@ -103,6 +103,7 @@ The admin panel of WireWear ensures smooth operations and data management, provi
   3. After that type `npm run dev` in termina
   4. Nowyou will see the ‘http://localhost:5173’ link in that
      terminal. Open that link in the browser.
+
 ### Steps To Run Admin Panel of The Project
 
   1. Right Click on **admin** folder > Select **Open In Integrated
@@ -113,7 +114,11 @@ The admin panel of WireWear ensures smooth operations and data management, provi
   3. After that type `npm run dev` in terminal
   4. Nowyou will see the ‘http://localhost:5174’ link in that
      terminal. Open that link in the browser.
-
+  
+### Login Credentials for admin panel:- 
+  1. ADMIN_EMAIL = "wire@wear.com"
+  2. ADMIN_PASSWORD = "wirewear1234"
+  
 ---
 
 #### I've set up Tailwind CSS for styling in the frontend project. You can use it, but some pages were causing issues, so some files have separate CSS files.
